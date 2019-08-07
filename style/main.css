@@ -1,0 +1,393 @@
+@font-face {
+    font-family: 'Share Tech Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url("ShareTechMono-Regular.ttf") format('truetype')
+  }
+
+
+*{
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    color: var(--secondary-main-colour);
+}
+
+:root{
+    --primary-main-colour : #F65275;
+    --secondary-main-colour: #7dc1fe;
+    --hightlight-colour: #41c89f;
+    --secondary-highlight-colour: #f983bf;
+    --dark-background-color: #12071c;
+}
+  
+
+body{
+    background-color: var(--dark-background-color);
+    color: var(--secondary-main-colour);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+
+#landing_page{
+    display: flex;
+    justify-content: space-around;
+}
+
+#menu_container{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20rem;
+}
+
+
+.menu_card{
+    width: 5rem;
+    height: 15rem;
+    border: 0.1rem solid black;
+    flex-grow : 1;
+    margin-left: 1rem;
+    box-shadow: 0px 0px 3px var(--hightlight-colour), 0 0 9px var(--secondary-highlight-colour);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-color: var(--hightlight-colour);
+}
+
+.menu_card:active{
+        -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.94);
+        -moz-box-shadow:0p x 0px 0px 0px rgba(0,0,0,0.94);
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.94);
+}
+
+.menu_card_title{
+    color: var(--secondary-main-colour);
+    font-size: 2rem;
+}
+
+.menu_card_title:hover{
+    text-shadow: var(--secondary-main-colour) 1px 0 10px;
+    color: #ffffff;
+}
+
+.active {
+    flex-grow: 2;
+    z-index: 5;
+}
+
+.cyber_input{
+    background: transparent;
+    border: transparent;
+    border-bottom: var(--hightlight-colour) 1px solid;
+    color: var(--secondary-main-colour);
+    caret-color: var(--secondary-main-colour);
+    float: left;
+}
+.cyber_input_label{
+    padding-left: 0px;
+    margin: 0px;
+    float: left;
+}
+
+#Main{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.terminal_box{
+    border: #fff solid 1px;
+    padding: 0.5rem;
+    height: auto;
+    min-height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 5px;
+}
+
+#name{
+    width: 100%;
+    height: 3rem;
+}
+
+.terminal_row{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.deck_button{
+    width: 10rem;
+    height:2rem;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--hightlight-colour);
+    color: var(--dark-background-color);
+    margin-bottom: 1rem;
+    margin-top:4px;
+
+}
+
+#note-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: auto;
+    flex-wrap: wrap;
+    overflow: wrap;
+}
+
+#new-note{
+    display: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#new-note input,
+#new-note textarea,
+#new-note i{
+    margin: 2px;
+}
+
+#new-note input,
+#new-note textarea{
+    background-color: var(--dark-background-color);
+    color: var(--secondary-main-colour);
+    border:none;
+}
+
+.stats>span{
+    margin-bottom: 1rem;
+}
+
+.stats{
+    flex-grow: 3;
+}
+
+.meta{
+    flex-grow: 1;
+}
+
+
+.sin{
+    flex-grow: 1;    
+}
+
+.notes{
+    flex-grow: 10;
+}
+
+textarea{
+    resize: none;
+}
+
+
+
+.note{
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 1rem;
+    min-width: 10%;
+    background-color: #58267f4f;
+    border: 1px solid var(--hightlight-colour);
+    width: auto;
+    padding: 0.5rem;
+}
+
+.contact{
+    white-space: pre-wrap;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: left;
+    margin: 1rem;
+    background-color: #58267f4f;
+    border: 1px solid var(--hightlight-colour);
+    width: 20%;
+    padding: 0.5rem;
+}
+
+.contact-container{
+    height: 60%;
+    overflow: scroll;
+    width: 100%;
+    display: flex;
+    overflow-x: hidden;
+    flex-flow: row wrap;
+}
+
+#main-load-section>article{
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 70% 15% 15%;
+    grid-column-gap: 5px;
+    grid-row-gap: 1rem; 
+}
+
+.load,
+.delete{
+    cursor: pointer;
+}
+
+.delete:hover,
+.load:hover{
+    text-shadow: var(--secondary-main-colour) 1px 0 10px;
+    color: #ffffff;
+}
+
+.newSheetLink{
+    color: var(--hightlight-colour);
+}
+
+.no_runners_breeder{
+    padding-top: 20%;
+    text-align: center;
+}
+
+#Skills, #Weapons, #Gear{
+    display: none;
+    flex-direction: column;
+}
+
+#Skills>section{
+    display: flex;
+    width: 100%;
+}
+.skill--title{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.skill--title>span{
+    width:126px;
+}
+
+.skill--values{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.skill--values>input{
+    flex: 0 1 auto;
+    width: 126px;
+}
+
+.skill--controls{
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+
+.skill--list{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.skill--list>span{
+    width:126px;
+}
+
+
+
+#Weapons>section{
+    display: flex;
+    width: 100%;
+}
+.weapons--title{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.weapons--title>span{
+    width:126px;
+}
+
+.weapons--values{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.weapons--values>input{
+    flex: 0 1 auto;
+    width: 126px;
+}
+
+.weapons--controls{
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+
+.weapons--list{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.weapons--list>span{
+    width:126px;
+}
+
+
+
+
+#Gear>section{
+    display: flex;
+    width: 100%;
+}
+.gear--title{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.gear--title>span{
+    width:126px;
+}
+
+.gear--values{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.gear--values>input{
+    flex: 0 1 auto;
+    width: 126px;
+}
+
+.gear--controls{
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+
+.gear--list{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.gear--list>span{
+    width:126px;
+}

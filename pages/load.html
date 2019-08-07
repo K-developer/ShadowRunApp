@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CyberDeck</title>
+
+        <meta charset="UTF-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+        </style>
+        <link href="../style/main.css" rel="stylesheet">
+        <link href="../style/component_styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <section id="app">
+            <header id="main-header">
+                <span class="char_sheet_menu_tab">
+                    <a href="../index.html">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </a>
+                </span>
+            </header>
+            <section id="main-load-section">
+                <article v-if="characters.length !== 0" v-for="(character, index) in characters">
+                    <span>Name: {{character.sheet.name}}</span>
+                    <span v-on:click="load(index)" class="load">Load</span>
+                    <span v-on:click="deleteCharacter(index)" class="delete">Delete</span>
+                </article>
+
+                <section v-if="characters.length === 0" class="no_runners_breeder">
+                    <h1>No Runners Here Breeder</h1>
+                    <h4>Go here to register you sinless freak  >>>  <a class="newSheetLink" href="sheet.html"> New Runner</a></h4>
+                </section>
+            </section>
+        </section>
+    
+        <script src="../script/main.js"></script>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.umd.js"></script>
+        <script>
+            const sheetMethods = {
+                deleteCharacter : function(index){
+                    const self = this;
+                    const deleteSheet = this.characters[index].sheet;
+                    const deleteId = deleteSheet.id;
+                    localStorage.removeItem(deleteId);
+                    const sheets = JSON.parse(localStorage.getItem("sheets"));
+                    sheets.splice(sheets.indexOf(deleteId), 1)
+                    localStorage.setItem("sheets", JSON.stringify(sheets));
+
+                    const sheetList = JSON.parse(localStorage.getItem("sheets"));
+                    self.characters = [];
+                    sheetList.forEach(function(sheet){
+                        let char = {};
+                        char['sheet'] = JSON.parse(localStorage.getItem(sheet));
+                        char['sheet']['id'] = sheet;
+                        self.characters.push( char );
+                    });
+                },
+                load : function(index){
+                    const loadSheet = this.characters[index].sheet;
+                    const loadId = loadSheet.id;
+                    window.location.href = "sheet.html?id="+loadId;
+                }
+            };
+
+            const data_store = {
+                characters: []
+            };
+
+            new Vue({
+                el: '#app',
+                data: data_store,
+                methods: sheetMethods,
+                mounted: function(){
+                    const self = this;
+                    const sheetList = JSON.parse(localStorage.getItem("sheets"));
+                    sheetList.forEach(function(sheet){
+                        let char = {};
+                        char['sheet'] = JSON.parse(localStorage.getItem(sheet));
+                        char['sheet']['id'] = sheet;
+                        self.characters.push( char );
+                    });
+                }
+            })
+
+        </script>        
+        <script>
+        
+        </script>
+    </body>
+</html>

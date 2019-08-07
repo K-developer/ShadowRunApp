@@ -1,0 +1,41 @@
+:root{
+    --primary-main-colour : #F65275;
+    --secondary-main-colour: #7dc1fe;
+    --hightlight-colour: #41c89f;
+    --secondary-highlight-colour: #f983bf;
+    --dark-background-color: #12071c;
+}
+
+.char_sheet_menu{
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;    
+    justify-content: space-around;
+}
+
+.char_sheet_menu_tab{
+    flex-grow: 2;
+    color: var(--secondary-main-colour);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.char_sheet_menu_tab__active{
+    border-bottom: 1px solid var(--secondary-highlight-colour);
+    text-shadow: var(--secondary-main-colour) 1px 0 10px;
+    color: #ffffff;
+}
+
+.char_sheet_menu_tab:hover{
+    text-shadow: var(--secondary-main-colour) 1px 0 10px;
+    color: #ffffff;
+}
+
+.tab-content{
+    display: none;
+    color: var(--secondary-main-colour);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    text-align: center;
+}

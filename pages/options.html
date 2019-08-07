@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CyberDeck</title>
+
+        <meta charset="UTF-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+        </style>
+        <link href="../style/main.css" rel="stylesheet">
+        <link href="../style/component_styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <section id="app">
+            <header id="main-header">
+            <nav class="char_sheet_menu">
+                <span class="char_sheet_menu_tab">
+                    <a href="../index.html">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span v-for="tab in tabs" class="char_sheet_menu_tab" v-bind:class="{'char_sheet_menu_tab__active' : selected === tab.name}" @click="selected = tab.name">
+                    {{tab.name}}
+                </span>
+                <span>
+                    <i class="fas fa-save" v-on:click="saveSheet()"></i>
+                </span>
+            </nav>
+ 
+            </header>
+            <section id="main-section">
+                <h1 id="name">{{sheet.name}}</h1>
+                <section id="Main" class="tab-content">
+                    <section class="terminal_row">
+                        <article class="terminal_box sin">
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@NAME:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-on:keyup="updateSheet('name', $event.target.value)" placeholder="Your drekking name">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Age:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.age">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Role:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.role">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Sin:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.sin">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Nuyen:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.nuyen">
+                            </span>
+                        </article>
+
+                        <article class="terminal_box stats">
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Body:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.body">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Agility:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.agility">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Reaction:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.reaction">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Strength:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.strength">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Will:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.will">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Logic:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.logic">
+                             </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Intellect:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.intellect">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Charisma:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.charisma">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@edge:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.edge">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Magic:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.magic">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Resonance:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.resonance">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Essence:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.essence">
+                            </span>
+                        </article>
+                    </section>
+
+                    <section class="terminal_row">
+                        <article class="terminal_box meta">
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Age:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.age">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Role:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.role">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Sin:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.sin">
+                            </span>
+                        </article>
+
+                        <article class="terminal_box notes">
+                            <button v-on:click="addNote()">Add Run Notes</button>
+                            <section id="note-container">
+                                <article v-for="(note, index) in sheet.notes" class="note">
+                                    <i class="far fa-trash-alt" v-on:click="deleteNote(index)"></i>
+                                    <span class="note_title">{{note.title}}</span>
+                                    <span clas="note_text">{{note.text}}</span>
+                                </article>
+                            </section>
+                            <section id="new-note">
+                                <span style="display:flex">
+                                    <input type="text" placeholder="The Drekking title" v-model="new_note_title">
+                                    <i class="far fa-save" v-on:click="saveNotes()"></i>
+                                </span>
+                                <textarea cols="15" rows="14" placeholder="The Drekking Text you sinless breeder" v-model="new_note_text">
+                                </textarea >
+                            </section>
+                        </article>
+                    </section>
+                     
+                </section>
+                <article id="Skills" class="tab-content">
+                    <article class="skill skill--title">
+                        <span>Name</span><span>Rating</span><span>Attribute</span><span>Specialisation</span><span>Dice Pool</span>
+                    </article>
+                    <article class="skill skill--values">
+                        <input type="text" name="name">
+                        <input type="text" name="rating">
+                        <input type="text" name="attribute">
+                        <input type="text" name="Specialisation">
+                        <input type="text" name="dice_pool">
+                    </article>
+                </article>
+                <article id="Abilities/Spells" class="tab-content">
+                    <span>
+                        Abilities and Spells
+                    </span>
+                </article>
+                <article id="Gear" class="tab-content">
+                    <span>
+                        Gear
+                    </span>
+                </article>
+
+
+
+            </section>
+        </section>
+        
+        <script src="../script/main.js"></script>
+        <script src="../script/vue.js"></script>
+        <script>
+            const sheetMethods = {
+                updateSheet : function(dataName, dataValue){
+                    this.sheet[dataName] = dataValue
+                },
+                saveNotes: function(){
+                    let note = {
+                        title: this.new_note_title,
+                        text: this.new_note_text
+                    };
+                    this.sheet.notes.push(note);
+                    this.new_note_title = "";
+                    this.new_note_text = "";
+                    document.getElementById("new-note").style.display = "none";
+                    document.getElementById("note-container").style.display = "flex";
+                },
+                addNote: function(){
+                    document.getElementById("new-note").style.display = "flex";
+                    document.getElementById("note-container").style.display = "none";
+                },
+                deleteNote(index){
+                    this.sheet.notes.splice(index, 1);
+                },
+                saveSheet(){
+                    if(this.sheet.name !== "<<Runner Sin>>"){
+                        let sheet_to_save = JSON.stringify(this.sheet);
+                        localStorage.setItem(this.id, sheet_to_save);
+                        let sheets = JSON.parse(localStorage.getItem("sheets")) || [];
+                        if(sheets.indexOf(this.id)  === -1){
+                                sheets.push(this.id);
+                            sheets = JSON.stringify(sheets);
+                            localStorage.setItem("sheets", sheets);
+                        }
+                    }
+                }
+            };
+
+            const data_store = {
+                tabs: [
+                    { name : "Main"}, 
+                    { name : "Skills"}, 
+                    { name : "Abilities/Spells"}, 
+                    { name : "Gear"}
+                ],
+                selected: "Main",
+                sheet : {
+                    name:"<<Runner Sin>>",
+                    age: "24",
+                    role: "runner",
+                    sin:"crim",
+                    body:1,
+                    agility:1,
+                    reaction:1,
+                    strength:1,
+                    will:1,
+                    logic:1,
+                    intellect:1,
+                    charisma:1,
+                    edge:1,
+                    magic:0,
+                    resonance:0,
+                    nuyen:0,
+                    essence:6,
+                    notes: []
+                },
+                new_note_title : "",
+                new_note_text : "",
+                id : ""
+            };
+
+            new Vue({
+                el: '#app',
+                data: data_store,
+                methods: sheetMethods,
+                mounted: function(){
+                    //Sets this so it doesn't change
+                    const self = this;
+
+                    //Checks if theres a sheet to load
+                    var $_GET=[];
+                    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+                    let id = $_GET['id'] || undefined;
+                    if(id !== undefined){
+                        this.id = id;
+                        self.sheet = JSON.parse(localStorage.getItem(id));
+                        document.getElementsByName("name").forEach(function(target){
+                            target.value = self.sheet.name;
+                        })
+                    }else{
+                        this.id = ID_Generator();
+                    }
+                    
+                    //Shows the default selected box
+                    document.getElementById(this.selected).style.display = "flex";
+
+                    //Autosave every 5 seconds
+                    setInterval(function(){
+                        self.saveSheet();
+                    }, 5000)
+
+                    
+                },
+                watch: {
+                    selected(newVal, oldVal){
+                        document.getElementById(oldVal).style.display = "none";
+                        document.getElementById(newVal).style.display = "flex";
+                    },
+                    name(newVal){
+                        document.getElementById("name").innerText = newVal;
+                    }
+                }
+            })
+
+        </script>        
+        <script>
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CyberDeck</title>
+
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="../style/font.css" 
+        <link href="../style/vuesax.css" rel="stylesheet">
+        <link rel="stylesheet" href="../style/all.css">
+        <link href="../style/main.css" rel="stylesheet">
+        <link href="../style/component_styles.css" rel="stylesheet">
+
+
+        <script src="../script/main.js"></script>
+        <script src="../script/all.js"></script>
+        <script src="../script/vue.js"></script>
+
+    </head>
+    <body>
+        <section id="app">
+            <header id="main-header">
+            <nav class="char_sheet_menu">
+                <span class="char_sheet_menu_tab">
+                    <a href="../index.html">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span v-for="tab in tabs" class="char_sheet_menu_tab" v-bind:class="{'char_sheet_menu_tab__active' : selected === tab.id}" @click="selected = tab.id">
+                    {{tab.name}}
+                </span>
+                <span>
+                    <span href='#' v-on:click="saveSheet()"><i class="fas fa-save"></i></span>
+                    
+                </span>
+            </nav>
+ 
+            </header>
+            <section id="main-section">
+                <h1 id="name">{{sheet.name}}</h1>
+                <section id="Main" class="tab-content">
+                    <section class="terminal_row">
+                        <article class="terminal_box sin">
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@NAME:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-on:keyup="updateSheet('name', $event.target.value)" placeholder="Your drekking name">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Age:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.age">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Role:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.role">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Sin:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.sin">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Nuyen:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.nuyen">
+                            </span>
+                        </article>
+
+                        <article class="terminal_box stats">
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Body:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.body">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Agility:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.agility">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Reaction:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.reaction">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Strength:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.strength">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Will:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.will">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Logic:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.logic">
+                             </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Intellect:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.intellect">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Charisma:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.charisma">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@edge:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.edge">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Magic:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.magic">
+                            </span>
+
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Resonance:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.resonance">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Essence:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.essence">
+                            </span>
+                        </article>
+                    </section>
+
+                    <section class="terminal_row">
+                        <article class="terminal_box meta">
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Age:&lt;&lt;Integer&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.age">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Role:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.role">
+                            </span>
+                            <span>
+                                 <span class="cyber_input_label">($Input)Character@Sin:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="sheet.sin">
+                            </span>
+                        </article>
+
+                        <article class="terminal_box notes">
+                            <button v-on:click="addNote()" class="deck_button">Add Run Notes</button>
+                            <section id="note-container">
+                                <article v-for="(note, index) in sheet.notes" class="note">
+                                    <span v-on:click="deleteNote(index)">
+                                        <i class="far fa-trash-alt"></i>
+                                    </span>
+                                    <span class="note_title">{{note.title}}</span>
+                                    <span clas="note_text">{{note.text}}</span>
+                                </article>
+                            </section>
+                            <section id="new-note">
+                                <span style="display:flex">
+                                    <input type="text" placeholder="The Drekking title" v-model="new_note_title">
+                                    <span v-on:click="saveNotes()"><i class="fas fa-save"></i></span>
+                    
+                                </span>
+                                <textarea cols="15" rows="14" placeholder="The Drekking Text you sinless breeder" v-model="new_note_text">
+                                </textarea >
+                            </section>
+                        </article>
+                        <article class="terminal_box contacts">
+                            <span>
+                                <span class="cyber_input_label">($Input)Contact@NAME:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="contact.name" placeholder="Your Contacts name">
+                            </span>
+                            <span>
+                                <span class="cyber_input_label">($Input)Contact@LOYALTY:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="contact.loyalty" placeholder="Your Contacts Loyalty">
+                            </span>
+                            <span>
+                                <span class="cyber_input_label">($Input)Contact@CONNECTION:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="contact.connection" placeholder="Your Contacts Connection">
+                            </span>
+                            <span>
+                                <span class="cyber_input_label">($Input)Contact@FAVOR:&lt;&lt;string&gt;&gt;:~ </span><input type="text" name="name" class="cyber_input" v-model="contact.favor" placeholder="Your Contacts Favor">
+                            </span>
+                            <button v-on:click="saveContact()" class="deck_button">Add New Contact</button>
+                            <section class="contact-container">
+                                <article v-for="(contact, index) in sheet.contacts" class="contact">
+                                    <!-- <i class="far fa-trash-alt" v-on:click="deleteNote(index)"></i> -->
+                                    <span class="note_title">Name:{{contact.name}}</span>
+                                    <span clas="note_text">Loyalty:{{contact.loyalty}}</span>
+                                    <span clas="note_text">Conn:{{contact.connection}}</span>
+                                    <span clas="note_text">Favor: {{contact.favor}}</span>
+
+                                </article>
+                            </section>
+                        </article>
+                    </section>
+                     
+                </section>
+                <article id="Skills" class="tab-content">
+                    <section class="skill skill--title">
+                        <span>Name</span><span>Rating</span><span>Attribute</span><span>Specialisation</span><span>Dice Pool</span>
+                    </section>
+                    <section class="skill skill--values">
+                        <input type="text" class="cyber_input" name="name" v-model="skill.name">
+                        <input type="text" class="cyber_input" name="rating" v-model="skill.rating">
+                        <input type="text" class="cyber_input" name="attribute" v-model="skill.attribute">
+                        <input type="text" class="cyber_input" name="Specialisation" v-model="skill.specialisation">
+                        <input type="text" class="cyber_input" name="dice_pool" v-model="skill.dice_pool">
+                    </section>
+                    <section class="skill skill--list" v-for="skill in sheet.skills">
+                        <span>{{skill.name}}</span><span>{{skill.rating}}</span><span>{{skill.attribute}}</span><span>{{skill.specialisation}}</span><span>{{skill.dice_pool}}</span>
+                    </section>
+                    <section class="skill skill--controls">
+                        <button v-on:click="addSkill()" class="deck_button">Add Skill</button>
+                    </section>
+                </article>
+                <article id="Weapons" class="tab-content">
+                    <section class="weapons weapons--title">
+                        <span>Name</span>
+                        <span>Damage</span>
+                        <span>Accuracy</span>
+                        <span>AP</span>
+                        <span>Mode</span>
+                        <span>RC</span>
+                        <span>Ammo</span>
+                    </section>
+                    <section class="weapons weapons--values">
+                        <input type="text" class="cyber_input" name="name" v-model="weapon.name">
+                        <input type="text" class="cyber_input" name="damage" v-model="weapon.damage">
+                        <input type="text" class="cyber_input" name="accuracy" v-model="weapon.accuracy">
+                        <input type="text" class="cyber_input" name="armour_piercing" v-model="weapon.ap">
+                        <input type="text" class="cyber_input" name="mode" v-model="weapon.mode">
+                        <input type="text" class="cyber_input" name="rc" v-model="weapon.rc">
+                        <input type="text" class="cyber_input" name="ammo" v-model="weapon.ammo">
+                    </section>
+                    <section class="weapons weapons--list" v-for="weapon in sheet.weapons">
+                        <span>{{weapon.name}}</span>
+                        <span>{{weapon.damage}}</span>
+                        <span>{{weapon.accuracy}}</span>
+                        <span>{{weapon.ap}}</span>
+                        <span>{{weapon.mode}}</span>
+                        <span>{{weapon.rc}}</span>
+                        <span>{{weapon.ammo}}</span>
+
+                    </section>
+                    <section class="weapons weapons--controls">
+                        <button v-on:click="addWeapons()" class="deck_button">Add Weapon</button>
+                    </section>
+                    
+                </article>
+                <article id="Gear" class="tab-content">
+                    <section class="gear gear--title">
+                    </section>
+                    <!-- <section class="gear gear--list" v-for="item in bag">
+                    </section> -->
+                    <section class="gear gear--controls">
+                        <button v-on:click="addSkill()" class="deck_button">Add Gear</button>
+                    </section>
+                </article>
+
+
+
+            </section>
+        </section>
+        <section id="dice_roller">
+
+        </section>
+
+        <script>
+
+            const data_store = {
+                tabs: [
+                    { name : "Main", id:"Main"}, 
+                    { name : "Skills", id:"Skills"}, 
+                    { name : "Weapons", id:"Weapons"}, 
+                    { name : "Other", id:"Gear"}
+                ],
+                selected: "Main",
+                sheet : {
+                    name:"<<Runner Sin>>",
+                    age: "24",
+                    role: "runner",
+                    sin:"crim",
+                    body:1,
+                    agility:1,
+                    reaction:1,
+                    strength:1,
+                    will:1,
+                    logic:1,
+                    intellect:1,
+                    charisma:1,
+                    edge:1,
+                    magic:0,
+                    resonance:0,
+                    nuyen:0,
+                    essence:6,
+                    contacts: [],
+                    skills: [],
+                    notes: [],
+                    weapons: [],
+                    bag: [],
+                },
+                skill : {
+                    name: "",
+                    rating: "",
+                    attribute: "",
+                    specialisation: "",
+                    dice_pool: ""
+                },
+                weapon : {
+                    name: "",
+                    damage: "",
+                    accuracy: "",
+                    ap: "",
+                    mode: "",
+                    rc: "",
+                    ammo: ""
+                },
+                gear : {
+                    name: "",
+                    rating: "",
+                    attribute: "",
+                    specialisation: "",
+                    dice_pool: ""
+                },
+                new_note_title : "",
+                new_note_text : "",
+                contact: {
+                    name: "",
+                    loyalty: "",
+                    connection: "",
+                    favor: ""
+                },
+                id : ""
+            };
+
+            const sheetMethods = {
+                updateSheet : function(dataName, dataValue){
+                    this.sheet[dataName] = dataValue
+                },
+                saveNotes: function(){
+                    let note = {
+                        title: this.new_note_title,
+                        text: this.new_note_text
+                    };
+                    this.sheet.notes.push(note);
+                    this.new_note_title = "";
+                    this.new_note_text = "";
+                    document.getElementById("new-note").style.display = "none";
+                    document.getElementById("note-container").style.display = "flex";
+                },
+                addSkill: function(){
+                    this.sheet.skills = this.sheet.skills || [];
+                    this.sheet.skills.push(this.skill);
+                    this.skill = {
+                        name: "",
+                        rating: "",
+                        attribute: "",
+                        specialisation: "",
+                        dice_pool: ""
+                    }
+                },
+                addWeapons: function(){
+                    this.sheet.weapons = this.sheet.weapons || [];
+                    this.sheet.weapons.push(this.weapon);
+                    this.weapon = {
+                        name: "",
+                        damage: "",
+                        accuracy: "",
+                        ap: "",
+                        mode: "",
+                        rc: "",
+                        ammo: ""
+                    }
+                },
+                saveContact: function(){
+                    this.sheets = this.sheets || {}
+                    this.sheet.contacts = this.sheet.contacts || [];
+                    this.sheet.contacts.push(this.contact);
+                    this.contact = {
+                    name: "",
+                    loyalty: "",
+                    connection: "",
+                    favor: ""
+                    }
+                },
+                addGear: function(){
+                    this.sheet.gear = this.sheet.gear || [];
+                    this.sheet.gear.push(this.gear);
+                    this.gear = {
+                        name: "",
+                        rating: "",
+                        attribute: "",
+                        specialisation: "",
+                        dice_pool: ""
+                    }
+                },
+                addNote: function(){
+                    document.getElementById("new-note").style.display = "flex";
+                    document.getElementById("note-container").style.display = "none";
+                },
+                deleteNote(index){
+                    this.sheet.notes.splice(index, 1);
+                },
+                saveSheet(){
+                    if(this.sheet.name !== "<<Runner Sin>>"){
+                        let sheet_to_save = JSON.stringify(this.sheet);
+                        localStorage.setItem(this.id, sheet_to_save);
+                        let sheets = JSON.parse(localStorage.getItem("sheets")) || [];
+                        if(sheets.indexOf(this.id)  === -1){
+                                sheets.push(this.id);
+                            sheets = JSON.stringify(sheets);
+                            localStorage.setItem("sheets", sheets);
+                        }
+                    }
+                }
+            };
+
+
+            new Vue({
+                el: '#app',
+                data: data_store,
+                methods: sheetMethods,
+                mounted: function(){
+                    //Sets this so it doesn't change
+                    const self = this;
+
+                    //Checks if theres a sheet to load
+                    var $_GET=[];
+                    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+                    let id = $_GET['id'] || undefined;
+                    if(id !== undefined){
+                        this.id = id;
+                        self.sheet = JSON.parse(localStorage.getItem(id));
+                        document.getElementsByName("name").forEach(function(target){
+                            target.value = self.sheet.name;
+                        })
+                    }else{
+                        this.id = ID_Generator();
+                    }
+                    
+                    //Shows the default selected box
+                    document.getElementById(this.selected).style.display = "flex";
+
+                    //Autosave every 5 seconds
+                    setInterval(function(){
+                        self.saveSheet();
+                    }, 5000)
+
+                    
+                },
+                watch: {
+                    selected(newVal, oldVal){
+                        document.getElementById(oldVal).style.display = "none";
+                        document.getElementById(newVal).style.display = "flex";
+                    },
+                    name(newVal){
+                        document.getElementById("name").innerText = newVal;
+                    }
+                }
+            })
+
+        </script>        
+    </body>
+</html>
